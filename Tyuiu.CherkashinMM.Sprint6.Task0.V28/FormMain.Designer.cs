@@ -55,6 +55,7 @@
             groupBoxCondition_CMM.TabIndex = 0;
             groupBoxCondition_CMM.TabStop = false;
             groupBoxCondition_CMM.Text = "Условие";
+            groupBoxCondition_CMM.Enter += groupBoxCondition_CMM_Enter;
             // 
             // pictureBoxFormula_CMM
             // 

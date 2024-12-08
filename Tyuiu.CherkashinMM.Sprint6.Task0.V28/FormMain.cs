@@ -32,10 +32,15 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task0.V28
         }
         private void textBoxX_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != 8))
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && (e.KeyChar != 8))
             {
                 e.Handled = true;
             }
+        }
+
+        private void groupBoxCondition_CMM_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

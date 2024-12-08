@@ -1,6 +1,6 @@
-using Tyuiu.CherkashinMM.Sprint6.Task2.V13.Lib;
+using Tyuiu.CherkashinMM.Sprint6.Task4.V5.Lib;
 
-namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
+namespace Tyuiu.CherkashinMM.Sprint6.Task4.V5
 {
     public partial class FormMain : Form
     {
@@ -10,6 +10,11 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
         }
 
         DataService ds = new DataService();
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+
+        }
 
         private void buttonDone_CMM_MouseEnter(object sender, EventArgs e)
         {
@@ -23,12 +28,38 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
 
         private void buttonHelp_CMM_MouseEnter(object sender, EventArgs e)
         {
-            buttonHelp_CMM.BackColor = SystemColors.HotTrack;
+            buttonSave_CMM.BackColor = SystemColors.HotTrack;
         }
 
         private void buttonHelp_CMM_MouseLeave(object sender, EventArgs e)
         {
-            buttonHelp_CMM.BackColor = SystemColors.MenuHighlight;
+            buttonSave_CMM.BackColor = SystemColors.MenuHighlight;
+        }
+
+        private void buttonSave_CMM_MouseEnter(object sender, EventArgs e)
+        {
+            buttonSave_CMM.BackColor = Color.RoyalBlue;
+        }
+
+        private void buttonSave_CMM_MouseLeave(object sender, EventArgs e)
+        {
+            buttonSave_CMM.BackColor = Color.CornflowerBlue;
+        }
+
+        private void buttonSave_CMM_Click(object sender, EventArgs e)
+        {
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask4.txt");
+            File.WriteAllText(path, textBoxResult_CMM.Text);
+             
+            DialogResult dialogResult = MessageBox.Show("Файл " + path + " сохранён успешно!\nОткрыть его в блокноте?", "Сообщение", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                System.Diagnostics.Process txt = new System.Diagnostics.Process();
+                txt.StartInfo.FileName = "notepad.exe";
+                txt.StartInfo.Arguments = path;
+                txt.Start();
+            }
         }
 
         private void buttonDone_CMM_Click(object sender, EventArgs e)
@@ -41,18 +72,24 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
                 double[] res = ds.GetMassFunction(startValue, endValue);
                 int i = 0;
 
+                this.chartFunction_CMM.Titles.Clear();
+                this.chartFunction_CMM.Series[0].Points.Clear();
+
                 this.chartFunction_CMM.Titles.Add("График функции");
 
                 this.chartFunction_CMM.ChartAreas[0].AxisX.Title = "Ось X";
                 this.chartFunction_CMM.ChartAreas[0].AxisY.Title = "Ось Y";
 
+                textBoxResult_CMM.Text = "";
+
                 for (int x = startValue; x <= endValue; x++, i++)
                 {
-                    this.dataGridViewFunction_CMM.Rows.Add(Convert.ToString(x), Convert.ToString(res[i]));
+                    textBoxResult_CMM.AppendText($"{res[i]}" + Environment.NewLine);
 
                     this.chartFunction_CMM.Series[0].Points.AddXY(x, res[i]);
                 }
 
+                buttonSave_CMM.Enabled = true;
             }
             catch
             {
@@ -62,7 +99,7 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
 
         private void buttonHelp_CMM_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Таск 2 выполнил студент группы ИИПб-24-1 Черкашин Максим Михайлович", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Таск 4 выполнил студент группы ИИПб-24-1 Черкашин Максим Михайлович", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void textBoxValue_KeyPress(object sender, KeyPressEventArgs e)
@@ -81,11 +118,6 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task2.V13
                     e.Handled = true;
                 }
             }
-        }
-
-        private void chartFunction_CMM_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
