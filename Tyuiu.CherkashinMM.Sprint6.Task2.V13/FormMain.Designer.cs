@@ -242,6 +242,7 @@
             Controls.Add(groupBoxInput_CMM);
             Controls.Add(groupBoxCondition_CMM);
             Name = "FormMain";
+            StartPosition = FormStartPosition.WindowsDefaultBounds;
             Text = "Спринт 6 | Таск 1 | Вариант 6 | Черкашин М. М.";
             groupBoxInput_CMM.ResumeLayout(false);
             groupBoxInput_CMM.PerformLayout();
