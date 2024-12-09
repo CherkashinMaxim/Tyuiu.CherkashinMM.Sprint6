@@ -21,5 +21,10 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task6.V12
         {
 
         }
+
+        private void buttonOK_click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
