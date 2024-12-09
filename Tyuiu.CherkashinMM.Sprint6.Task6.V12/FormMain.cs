@@ -28,8 +28,7 @@ namespace Tyuiu.CherkashinMM.Sprint6.Task6.V12
 
         private void buttonDone_click(object sender, EventArgs e)
         {
-            string str = "w";
-            textBoxOutput.Text = ds.CollectTextFromFile(str, openFilePath);
+            textBoxOutput.Text = ds.CollectTextFromFile(openFilePath);
         }
 
         private void buttonAbout_click(object sender, EventArgs e)

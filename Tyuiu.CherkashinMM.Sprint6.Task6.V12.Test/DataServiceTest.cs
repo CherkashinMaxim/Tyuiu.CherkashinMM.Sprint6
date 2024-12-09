@@ -10,6 +10,6 @@ public class DataServiceTest
    { 
         DataService ds = new DataService();
         string path = Path.Combine(Path.GetTempPath(), "InPutDataFileTask6V12.txt");
-        Assert.AreEqual("iKDOjtfsPmw", ds.CollectTextFromFile("w", path));
+        Assert.AreEqual("iKDOjtfsPmw", ds.CollectTextFromFile(path));
    } 
 } 
